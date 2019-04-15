@@ -1,0 +1,16 @@
+.box{width: 980px;margin: 5% auto 0;}
+/*最上面的标题*/
+.title-line{width: 980px;height: 28px;margin: 0 auto;border-bottom: 1px solid #ddd;margin-bottom: 28px;text-align: center;}
+.title-line span{font-size: 30px;height: 56px;line-height: 56px;margin: 0 auto;padding: 0 20px;background-color: #fff;text-align: center;}
+
+/*输入框*/
+.input-box{padding-top: 80px;margin: 0 auto;width: 500px}
+.input-box li{margin: 0 auto;}
+.username input{width: 500px;border: 1px solid #ddd;border-radius: 4px;vertical-align: middle;height: 18px;padding: 10px;}
+.status-box .text{margin: 6px 0;font-size: 12px;line-height: 20px;height: 20px}
+.status-box .text .tips{color: deeppink;float: left;}
+
+.password input{width: 500px;border: 1px solid #ddd;border-radius: 4px;vertical-align: middle;height: 18px;padding: 10px;}
+.btn {display: inline-block;height: 36px;line-height: 36px;border-radius: 2px;width: 180px;font-size: 14px;text-align: center;margin: 10px 32px 0;cursor: pointer;}
+.btn-login{border: 1px solid #0381aa!important;color: #fff;background-color: #00a7de;}
+.btn-reset{border: 1px solid #ddd!important;color: #222;background-color: #fff;}
