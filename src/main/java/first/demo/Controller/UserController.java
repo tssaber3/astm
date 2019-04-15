@@ -1,5 +1,6 @@
 package first.demo.Controller;
 
+import com.google.gson.Gson;
 import first.demo.Dao.UserRepository;
 import first.demo.Pojo.User;
 import first.demo.Service.UserService;
@@ -29,6 +30,7 @@ public class UserController {
         User user = userService.selUserByUsernameAndPassword(username,password);
         if(user != null)
         {
+            request.getSession().setAttribute("username",username);
             if (user.getRole().getName().equals("管理员"))
             {
                 out.print(1);
@@ -50,8 +52,27 @@ public class UserController {
 
     //每次进入都要确认
     @RequestMapping("/iflogin")
-    public void iflogin(HttpServletResponse response, HttpServletRequest request,@RequestParam("username")String username,@RequestParam("power")String power)
-    {
+    public void iflogin(HttpServletResponse response, HttpServletRequest request,@RequestParam("username")String username) throws IOException {
+        PrintWriter out = response.getWriter();
+        System.out.println("adad");
+        Gson gson = new Gson();
+        if(username.equals(request.getSession().getAttribute("username")))
+        {
+            User user = userService.selUserByUsername(username);
+            if(user != null)
+            {
+                String str = gson.toJson(user);
+                out.print(str);
+            }else
+            {
+                out.print("null");
+            }
+        }else
+        {
+            //重新登录
+            out.print("relogin");
+        }
+        out.flush();
 
     }
 }

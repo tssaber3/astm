@@ -26,12 +26,12 @@ $(function () {
                     {
                         localStorage.clear();
                         localStorage.setItem("username",username);
-                        window.location.href = 'teacher.html';
+                        window.location.href = 'info.html';
                     }else if(data == 3)
                     {
                         localStorage.clear();
                         localStorage.setItem("username",username);
-                        window.location.href = 'stu_info.html';
+                        window.location.href = 'info.html';
                     }else if(data == 0)
                     {
                         //账密错误的提示

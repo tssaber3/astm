@@ -1,4 +1,4 @@
-.box{width: 980px;border: 1px solid #ddd;min-height: 890px;background-color: #fff;margin: 3% auto 0;}
+.box{width: 980px;border: 1px solid #ddd;min-height: 890px;background-color: #fff;margin: 3% auto 0;border-radius: 4px;}
 .title{height: 50px;padding-left: 30px;border-bottom: 1px solid #ddd;}
 .title-icon{float: left;width: 4px;height: 16px;margin-top: 18px;background-color: #00a7de;border-radius: 4px;}
 .title span{font-size: 12px;margin: 15px 0 0 15px;cursor: pointer;float: left;color: #00a7de;}
@@ -17,6 +17,6 @@
 .under-line{width: 80%;margin: 0 auto;border-bottom: 1px solid #ddd;margin-top: 20px;margin-bottom: 40px;}
 
 /*按钮*/
-.btn-warp{width: 360px;height: 36px;margin: 0 auto;}
-.btn{display: inline-block;line-height: 1;cursor: pointer;border: 1px solid #c4c4c4;margin: 0;padding: 10px 15px;border-radius: 4px;box-sizing: border-box;width: 110px;font-size: 14px;}
-.btn.btn-save{margin: 0 auto;background-color: #00a1d6!important;border-color: #20a0ff;color: #fff;margin-right: 20px;}
+.btn-warp{width: 400px;height: 36px;margin: 0 auto;}
+.btn{display: inline-block;line-height: 1;cursor: pointer;border: 1px solid #c4c4c4;margin: 0;padding: 10px 15px;border-radius: 4px;box-sizing: border-box;width: 110px;font-size: 14px;margin-right: 20px;color: #222;}
+.btn:hover{background-color: #00a7de;border-color: #00a7de;color: #fff;}
