@@ -20,4 +20,16 @@ public class UserServiceImpl implements UserService {
     public User selUserByUsernameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username,password);
     }
+
+    @Override
+    public boolean saveUser(User user) {
+        User user1 = userRepository.save(user);
+        if(user1 != null)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
 }

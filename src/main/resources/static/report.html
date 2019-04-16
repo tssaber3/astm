@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>项目申报</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/report.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/report.css">
+</head>
+<body>
+<div class="box">
+    <div class="title">
+        <span class="title-icon"></span>
+        <span>项目申报</span>
+    </div>
+    <div class="report-info">
+        <div class="">
+            <form class="info-form clear-fix">
+                <div class="info-report-stu_username info-user">
+                    <label class="info-item">学号:</label>
+                    <label class="info-item-stu_username info-user-detail">1274243927</label>
+                </div>
+                <div class="info-report-stu_nickname info-user">
+                    <label class="info-item">姓名:</label>
+                    <label class="info-item-stu_nickname info-user-detail">霞之丘诗羽</label>
+                </div>
+                <div class="info-report-project_name info-user">
+                    <label class="info-item">项目名称:</label>
+                    <div class="form-item-content">
+                        <div class="info-item-content-name info-report-detail">
+                            <input type="text" class="content-name-textarea" placeholder="项目名称">
+                        </div>
+                    </div>
+                    <div class="project_name_error error">
+                        <p>请输入项目名称</p>
+                    </div>
+                </div>
+                <div class="info-report-credit info-user">
+                    <label class="info-item">学分:</label>
+                    <div class="form-item-content">
+                        <input type="text" class="content-credit-textarea" placeholder="输入学分">
+                    </div>
+                    <div class="credit_error error">请输入学分</div>
+                </div>
+                <div class="info-report-type info-user">
+                    <label class="info-item">项目类型:</label>
+                    <div class="form-item-content">
+                        <div class="info-item-content-deparment info-user-detail" id="info-item-content-deparment">点击选择</div>
+                        <!--下拉框-->
+                        <div class="drop-cascader-container" style="display: none;">
+                            <div class="cascader-item-collect">
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">学科竞赛</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">科技创新活动</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">学术论文</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">学术活动</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">文学创作.艺术作品或发明创造</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">海外实践</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">大学生创业</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">专家讲座</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">专业证书考试</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">社团活动</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">社会实践类/志愿服务类活动</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">社会服务工作</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">文体竞赛类活动</p>
+                                </div>
+                                <div class="cascader-item">
+                                    <p class="cascader-item-content">大学生网络安全教育</p>
+                                </div>
+                            </div>
+                            <div class="cancel">
+                                <span id="cascader-cancel">取消</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project_type_error error">请选择项目类型</div>
+                </div>
+                <div class="info-report-description info-user">
+                    <label class="info-item">项目描述:</label>
+                    <div class="form-item-content">
+                        <textarea placeholder="请描述您的项目" class="content-description-textarea"></textarea>
+                    </div>
+                    <div class="description_error error">请添加项目描述</div>
+                </div>
+            </form>
+        </div>
+        <!-- 下划线-->
+        <div class="under-line"></div>
+        <div class="btn-warp">
+            <a href="#" class="btn-shenghe btn">提交</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

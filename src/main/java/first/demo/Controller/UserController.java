@@ -1,18 +1,31 @@
 package first.demo.Controller;
 
 import com.google.gson.Gson;
+import first.demo.Dao.ReportRepository;
 import first.demo.Dao.UserRepository;
+import first.demo.Pojo.Project;
+import first.demo.Pojo.Report;
 import first.demo.Pojo.User;
+import first.demo.Service.ReportService;
 import first.demo.Service.UserService;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -20,6 +33,13 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+
+    @Resource
+    private ReportService reportService;
+
+    @Resource
+    private ReportRepository reportRepository;
 
 //    返回值是0：账密错误 1：管理员 2：老师 3：学生
     @RequestMapping("/login")
@@ -30,7 +50,7 @@ public class UserController {
         User user = userService.selUserByUsernameAndPassword(username,password);
         if(user != null)
         {
-            request.getSession().setAttribute("username",username);
+//            request.getSession().setAttribute("username",username);
             if (user.getRole().getName().equals("管理员"))
             {
                 out.print(1);
@@ -53,11 +73,14 @@ public class UserController {
     //每次进入都要确认
     @RequestMapping("/iflogin")
     public void iflogin(HttpServletResponse response, HttpServletRequest request,@RequestParam("username")String username) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         System.out.println("adad");
         Gson gson = new Gson();
-        if(username.equals(request.getSession().getAttribute("username")))
-        {
+//        if(username.equals(request.getSession().getAttribute("username")))
+//        {
             User user = userService.selUserByUsername(username);
             if(user != null)
             {
@@ -67,12 +90,165 @@ public class UserController {
             {
                 out.print("null");
             }
-        }else
-        {
-            //重新登录
-            out.print("relogin");
-        }
+//        }else
+//        {
+//            //重新登录
+//            out.print("relogin");
+//        }
         out.flush();
 
+    }
+
+//    项目申报
+    @RequestMapping("/uploadreport")
+    public void uploadreport(HttpServletResponse response,HttpServletRequest request,@RequestParam("description")String description,@RequestParam("type")String type,@RequestParam("username")String username,@RequestParam("nickname")String nickname,@RequestParam("credit")String credit,@RequestParam("project_name")String project_name) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Project project = new Project();
+        Report report = new Report();
+        project.setDescription(description);
+        project.setType(type);
+        project.setProject_name(project_name);
+
+
+        report.setCredit(Integer.parseInt(credit));
+        report.setProof("待审核");
+        report.setReason("等待教师审核");
+        report.setStu_username(username);
+        report.setStu_nickname(nickname);
+        report.setProject(project);
+
+        boolean bok = reportService.addReport(report);
+        out.print(bok);
+        out.flush();
+    }
+
+//    获得审核列表
+    @RequestMapping("/getList")
+    public void getList(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        List<Report> list = reportService.getReport();
+        if(list != null)
+        {
+            Map<String,Object> map = new HashMap<>();
+            map.put("report",list);
+            String str = gson.toJson(map);
+            out.print(str);
+        }else
+        {
+            out.print("false");
+        }
+        out.flush();
+    }
+
+    //通过id得到report对象
+    @RequestMapping("/getreportbyid")
+    public void getreportbyid(HttpServletResponse response,HttpServletRequest request,@RequestParam("id")Integer id) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        Report report =  reportService.getReportById(id);
+        if(report != null)
+        {
+            String str = gson.toJson(report);
+            out.print(str);
+        }else
+        {
+            out.print(false);
+        }
+        out.flush();
+    }
+
+    //学生项目通过 项目状态变为通过 学生学分增加
+    @RequestMapping("/passproject")
+    public void passproject(HttpServletRequest request,HttpServletResponse response,@RequestParam("id")Integer id,@RequestParam("username")String username) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Report report = reportService.getReportById(id);
+        User user = userService.selUserByUsername(username);
+        report.setProof("通过");
+        int Score = report.getCredit();
+        //增加学分
+        user.setGrade(user.getGrade() + Score);
+        if(userService.saveUser(user) && reportService.saveReport(report))
+        {
+            out.print("success");
+        }
+        else
+        {
+            out.print("failure");
+        }
+        out.flush();
+    }
+
+    //学生项目不通过
+    @RequestMapping("rejectproject")
+    public void  rejectproject(HttpServletRequest request,HttpServletResponse response,@RequestParam("id")Integer id) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Report report = reportService.getReportById(id);
+        report.setProof("未通过");
+        report.setReason("老师审核未通过");
+        if(reportService.saveReport(report))
+        {
+            out.print("success");
+        }else
+        {
+            out.print("failure");
+        }
+        out.flush();
+    }
+
+    @RequestMapping("/getreportbyall")
+    public void getreportbyall(HttpServletResponse response, HttpServletRequest request,
+                               @RequestParam("project_name")String project_name,
+                               @RequestParam("user_name")String user_name,
+                               @RequestParam("project_type")String project_type,
+                               @RequestParam("project_credit")String project_credit) throws IOException {
+        System.out.println("进来了");
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        Report report = new Report();
+        Project project = new Project();
+        project.setType(project_type);
+        project.setProject_name(project_name);
+        //多条件查询
+        Specification<Report> specification = new Specification<Report>() {
+            @Override
+            public Predicate toPredicate(Root<Report> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> list = new ArrayList<>();
+                list.add(criteriaBuilder.equal(root.get("stu_username"),user_name));
+                list.add(criteriaBuilder.equal(root.get("credit"),project_credit));
+                Predicate[] arr = new Predicate[list.size()];
+                return criteriaBuilder.and(list.toArray(arr));
+            }
+        };
+        List<Report> list = reportRepository.findAll(specification);
+        for (Report report1 :list)
+        {
+            if(report1.getProject().Myequals(project))
+            {
+                System.out.println(report1);
+                String str = gson.toJson(report1);
+                out.print(str);
+                out.flush();
+                return;
+            }
+        }
     }
 }

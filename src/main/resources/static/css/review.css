@@ -1,0 +1,21 @@
+.box{width: 980px;border: 1px solid #ddd;min-height: 890px;background-color: #fff;margin: 3% auto 0;border-radius: 4px;}
+.title{height: 50px;padding-left: 30px;border-bottom: 1px solid #ddd;}
+.title-icon{float: left;width: 4px;height: 16px;margin-top: 18px;background-color: #00a7de;border-radius: 4px;}
+.title span{font-size: 12px;margin: 15px 0 0 15px;cursor: pointer;float: left;color: #00a7de;}
+
+.teacher-info{padding: 20px 20px 0;position: relative;}
+
+.info-user{float: left;width: 780px;margin-bottom: 22px}
+.info-item{width: 90px;text-align: right;margin-right: 20px;float: left;line-height: 30px;vertical-align: middle;font-size: 16px;color: #48575a;}
+.info-user-detail{line-height: 30px;font-size: 16px;position: relative;color: #898989;vertical-align: middle;}
+
+.under-line{width: 80%;margin: 0 auto;border-bottom: 1px solid #ddd;margin-top: 20px;margin-bottom: 40px;}
+
+.report-list-title{border-bottom: 1px solid #e7e7e7;text-align: center;background-color: #fff;width: 100%;margin: 0 auto;}
+
+.title-item{width: 71px;text-align: center;min-width: 56px;margin: 0 35px;line-height: 48px;height: 48px;display: inline-block;font-size: 14px;}
+
+/*项目信息*/
+.project-info{margin-top: 10px;padding-left: 35px;cursor: pointer;}
+.project-info:hover{background-color: #e7e7e7;}
+.project-info div{width: 71px;text-align: center;min-width: 56px;margin: 0 35px;line-height: 48px;height: 48px;display: inline-block;font-size: 14px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;vertical-align: bottom;}

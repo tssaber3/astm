@@ -16,6 +16,19 @@ public class Project {
     @Column(name = "project_name")
     private String project_name;
 
+    @Column(name = "type")
+    private String type;
+
+    public boolean Myequals(Object obj) {
+        Project project = (Project) obj;
+        if(this.type.equals(project.getType())&&this.getProject_name().equals(project.getProject_name()))
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
 
     @Override
     public String toString() {
@@ -23,7 +36,16 @@ public class Project {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", project_name='" + project_name + '\'' +
+                ", type='" + type + '\'' +
                 '}';
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getId() {

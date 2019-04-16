@@ -14,9 +14,7 @@ public class MyFilter implements Filter{
     public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)throws IOException,ServletException
     {
         HttpServletResponse response = (HttpServletResponse) arg1;
-        response.setHeader("Access-Control-Allow-Origin", "8090");
-        System.out.println("进入filter");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         arg2.doFilter(arg0,arg1);
-        System.out.println("离开filter");
     }
 }

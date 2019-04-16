@@ -1,8 +1,11 @@
 package first.demo;
 
 import first.demo.Dao.UserRepository;
+import first.demo.Pojo.Project;
+import first.demo.Pojo.Report;
 import first.demo.Pojo.Role;
 import first.demo.Pojo.User;
+import first.demo.Service.ReportService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +19,9 @@ public class DemoApplicationTests {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private ReportService reportService;
     @Test
     public void contextLoads() {
         User user1 = new User();
@@ -58,6 +64,28 @@ public class DemoApplicationTests {
         userRepository.save(user2);
         userRepository.save(user3);
 
+    }
+
+    @Test
+    public void  text1()
+    {
+
+
+        Project project = new Project();
+        Report report = new Report();
+        project.setDescription("第一次");
+        project.setType("社团活动");
+        project.setProject_name("我的涛涛");
+
+
+        report.setCredit(Integer.parseInt("10"));
+        report.setProof("待审核");
+        report.setReason("等待教师审核");
+        report.setStu_username("17347898501");
+        report.setStu_nickname("加藤惠");
+        report.setProject(project);
+
+        reportService.addReport(report);
     }
 
 }

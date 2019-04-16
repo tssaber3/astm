@@ -1,0 +1,61 @@
+.box{width: 980px;border: 1px solid #ddd;min-height: 890px;background-color: #fff;margin: 3% auto 0;border-radius: 4px;}
+.title{height: 50px;padding-left: 30px;border-bottom: 1px solid #ddd;}
+.title-icon{float: left;width: 4px;height: 16px;margin-top: 18px;background-color: #00a7de;border-radius: 4px;}
+.title span{font-size: 12px;margin: 15px 0 0 15px;cursor: pointer;float: left;color: #00a7de;}
+
+.report-info{padding: 20px 20px 0;position: relative;}
+
+
+.info-user{float: left;width: 780px;margin-bottom: 22px}
+.info-item{width: 90px;text-align: right;margin-right: 20px;float: left;line-height: 30px;vertical-align: middle;font-size: 16px;color: #48575a;}
+.info-user-detail{line-height: 30px;font-size: 16px;position: relative;color: #898989;vertical-align: middle;}
+
+.form-item-content{line-height: 30px;position: relative;font-size: 14px;}
+.info-item-content-name{float: left;width: 225px;height: 30px;line-height: 30px;border-radius: 4px;}
+
+
+.content-name-textarea,.content-credit-textarea{float: left;width: 225px;height: 30px;line-height: 30px;border: 1px solid #ddd;border-radius: 4px;resize: none;padding: 2px 10px;box-sizing: border-box;}
+
+.content-description-textarea{width: 618px;height: 88px;resize: none;padding: 5px 7px;box-sizing: border-box;line-height: 1.5;color: #1f2d3d;background-color: #fff;border: 1px solid #bfcbd9;border-radius: 4px;font-size: 14px;}
+
+.info-item-content-deparment{cursor:pointer;float: left;width: 225px;height: 30px;line-height: 30px;border: 1px solid #ddd;border-radius: 4px;font-size: 14px;padding: 2px 10px}
+
+.under-line{width: 80%;margin: 0 auto;border-bottom: 1px solid #ddd;margin-top: 20px;margin-bottom: 40px;}
+
+/*按钮*/
+.btn-warp{width: 130px;height: 36px;margin: 0 0 0 100px;}
+.btn{display: inline-block;line-height: 1;cursor: pointer;border: 1px solid #c4c4c4;margin: 0;padding: 10px 15px;border-radius: 4px;box-sizing: border-box;width: 110px;font-size: 14px;margin-right: 20px;color: #222;}
+.btn:hover{background-color: #00a7de;border-color: #00a7de;color: #fff;}
+
+/*下拉框*/
+.drop-cascader-container{padding-bottom: 50px;position: absolute;top: 40px;background-color: #fff;border: 1px solid #e5e9ef;box-shadow: 0 2px 4px 0 rgba(0,0,0,.14);border-radius: 4px;left: 110px;z-index: 10;}
+.cascader-item-collect{width: 227px;height: 239px;overflow: hidden;padding: 12px 0;}
+.cascader-item-collect:hover{overflow: auto;}
+.cascader-item{padding: 12px 24px;width: 227px;cursor: pointer;display: flex;align-items: center;justify-content: space-between;box-sizing: border-box;}
+.cascader-item:hover{background-color: #e5e9ef;}
+.cascader-item-content{color: #222;box-sizing: border-box;text-overflow: ellipsis;}
+
+/*错误样式*/
+.error{font-size: 14px;color: #f45a8d;width: 220px;display: inline-block;margin: 6px 0 0 20px;display: none;}
+.description_error{margin-left: 110px;}
+
+.drop-cascader-container .cancel{position: absolute;width: 100%;bottom: 0;height: 50px;}
+.drop-cascader-container .cancel span{cursor: pointer; color: #222;margin: 10px 30px;height: 30px;border: 1px solid #e5e9ef;font-size: 12px;text-align: center;border-radius: 4px;background-color: #e5e9ef;display: block;}
+.drop-cascader-container .cancel span:hover{background-color: #00a7de;border-color: #00a7de;color: #fff;}
+.info-item-content-deparment:hover .drop-cascader-container{display: block;}
+
+
+/*定义滚动条*/
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #edf2f9;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #6d757a;
+}

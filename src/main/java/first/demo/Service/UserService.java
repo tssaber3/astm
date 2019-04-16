@@ -10,4 +10,6 @@ public interface UserService {
     User selUserByUsername(String username);
 
     User selUserByUsernameAndPassword(String username,String password);
+
+    boolean saveUser(User user);
 }
