@@ -83,6 +83,7 @@ $(function () {
                 {
                     url: 'http://localhost:8090/user/uploadreport',
                     type:'post',
+                    dataType:'text',
                     data:{
                         username:username,
                         nickname:nickname,

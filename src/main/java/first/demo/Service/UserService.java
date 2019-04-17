@@ -3,6 +3,7 @@ package first.demo.Service;
 import first.demo.Pojo.User;
 
 import javax.servlet.annotation.WebServlet;
+import java.util.List;
 
 @WebServlet("/userservlet")
 public interface UserService {
@@ -12,4 +13,8 @@ public interface UserService {
     User selUserByUsernameAndPassword(String username,String password);
 
     boolean saveUser(User user);
+
+    List<User> getAllStu();
+
+    User getUserById(int id);
 }

@@ -7,7 +7,6 @@ $(function () {
            {
                url:'http://localhost:8090/user/login',
                type:'POST',
-               dataType:'JSON',
                // xhrFields: {withCredentials: true},
                data:{
                    username:username,

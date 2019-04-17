@@ -1,5 +1,6 @@
 package first.demo;
 
+import first.demo.Dao.RoleRepository;
 import first.demo.Dao.UserRepository;
 import first.demo.Pojo.Project;
 import first.demo.Pojo.Report;
@@ -22,31 +23,110 @@ public class DemoApplicationTests {
 
     @Resource
     private ReportService reportService;
+
+    @Resource
+    private RoleRepository roleRepository;
     @Test
     public void contextLoads() {
+        //表设计错误 一对多
         User user1 = new User();
-        user1.setUsername("1274243927");
-        user1.setNickname("霞之丘诗羽");
-        user1.setPassword("123456");
-        user1.setDeparment("计算机");
-        user1.setGrade(1);//年级
-        user1.setScore(0);//学分
+        user1.setUsername("admin");
+        user1.setPassword("admin");
+
 
         User user2 = new User();
-        user2.setUsername("159922720907");
-        user2.setNickname("英梨梨");
+        user2.setUsername("teacher1");
+        user2.setNickname("teacher1");
         user2.setPassword("123456");
-        user2.setDeparment("计算机");
-        user2.setGrade(1);//年级
-        user2.setScore(0);//学分
+        user2.setType("学科竞赛");
 
         User user3 = new User();
-        user3.setUsername("17347898501");
-        user3.setNickname("加藤惠");
+        user3.setUsername("teacher2");
+        user3.setNickname("teacher2");
         user3.setPassword("123456");
-        user3.setDeparment("计算机");
-        user3.setGrade(1);//年级
-        user3.setScore(0);//学分
+        user3.setType("科技创新活动");
+
+        User user4 = new User();
+        user4.setUsername("teacher3");
+        user4.setNickname("teacher3");
+        user4.setPassword("123456");
+        user4.setType("学术论文");
+
+        User user5 = new User();
+        user5.setUsername("teacher4");
+        user5.setNickname("teacher4");
+        user5.setPassword("123456");
+        user5.setType("学术活动");
+
+        User user6 = new User();
+        user6.setUsername("teacher5");
+        user6.setNickname("teacher5");
+        user6.setPassword("123456");
+        user6.setType("文学创作.艺术作品或发明创造");
+
+
+        User user7 = new User();
+        user7.setUsername("teacher6");
+        user7.setNickname("teacher6");
+        user7.setPassword("123456");
+        user7.setType("海外实践");
+
+        User user8 = new User();
+        user8.setUsername("teacher7");
+        user8.setNickname("teacher7");
+        user8.setPassword("123456");
+        user8.setType("大学生创业");
+
+        User user9 = new User();
+        user9.setUsername("teacher8");
+        user9.setNickname("teacher8");
+        user9.setPassword("123456");
+        user9.setType("专家讲座");
+
+        User user10 = new User();
+        user10.setUsername("teacher9");
+        user10.setNickname("teacher9");
+        user10.setPassword("123456");
+        user10.setType("专业证书考试");
+
+        User user11 = new User();
+        user11.setUsername("teacher10");
+        user11.setNickname("teacher10");
+        user11.setPassword("123456");
+        user11.setType("社团活动");
+
+
+        User user12 = new User();
+        user12.setUsername("teacher11");
+        user12.setNickname("teacher11");
+        user12.setPassword("123456");
+        user12.setType("社会实践类/志愿服务类活动");
+
+        User user13 = new User();
+        user13.setUsername("teacher12");
+        user13.setNickname("teacher12");
+        user13.setPassword("123456");
+        user13.setType("社会服务工作");
+
+        User user14 = new User();
+        user14.setUsername("teacher13");
+        user14.setNickname("teacher13");
+        user14.setPassword("123456");
+        user14.setType("文体竞赛类活动");
+
+        User user15 = new User();
+        user15.setUsername("teacher14");
+        user15.setNickname("teacher14");
+        user15.setPassword("123456");
+        user15.setType("大学生网络安全教育");
+
+        User user16 = new User();
+        user16.setUsername("学生1");
+        user16.setNickname("张婷婷");
+        user16.setDeparment("计算机");
+        user16.setGrade(1);
+        user16.setScore(0);
+        user16.setPassword("123456");
 
         Role role1 = new Role();
         Role role2 = new Role();
@@ -57,12 +137,61 @@ public class DemoApplicationTests {
         role3.setName("学生");
 
         user1.setRole(role1);
+        role1.getUsers().add(user1);
         user2.setRole(role2);
-        user3.setRole(role3);
+        user3.setRole(role2);
+        user4.setRole(role2);
+        user5.setRole(role2);
+        user6.setRole(role2);
+        user7.setRole(role2);
+        user8.setRole(role2);
+        user9.setRole(role2);
+        user10.setRole(role2);
+        user11.setRole(role2);
+        user12.setRole(role2);
+        user13.setRole(role2);
+        user14.setRole(role2);
+        user15.setRole(role2);
+        role2.getUsers().add(user2);
+        role2.getUsers().add(user3);
+        role2.getUsers().add(user4);
+        role2.getUsers().add(user5);
+        role2.getUsers().add(user6);
+        role2.getUsers().add(user7);
+        role2.getUsers().add(user8);
+        role2.getUsers().add(user9);
+        role2.getUsers().add(user10);
+        role2.getUsers().add(user11);
+        role2.getUsers().add(user12);
+        role2.getUsers().add(user13);
+        role2.getUsers().add(user14);
+        role2.getUsers().add(user15);
+        user16.setRole(role3);
+        role3.getUsers().add(user16);
 
+//
+        roleRepository.save(role1);
+        roleRepository.save(role2);
+        roleRepository.save(role3);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
+        userRepository.save(user4);
+        userRepository.save(user5);
+        userRepository.save(user6);
+        userRepository.save(user7);
+        userRepository.save(user8);
+        userRepository.save(user9);
+        userRepository.save(user10);
+        userRepository.save(user11);
+        userRepository.save(user12);
+        userRepository.save(user13);
+        userRepository.save(user14);
+        userRepository.save(user15);
+        userRepository.save(user16);
+
+
+
 
     }
 

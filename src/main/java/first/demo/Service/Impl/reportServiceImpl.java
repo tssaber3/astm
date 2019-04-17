@@ -1,6 +1,7 @@
 package first.demo.Service.Impl;
 
 import first.demo.Dao.ReportRepository;
+import first.demo.Mapper.ReportMapper;
 import first.demo.Pojo.Project;
 import first.demo.Pojo.Report;
 import first.demo.Service.ReportService;
@@ -13,6 +14,9 @@ import java.util.List;
 public class reportServiceImpl implements ReportService {
     @Resource
     private ReportRepository reportRepository;
+
+    @Resource
+    private ReportMapper reportMapper;
 
     @Override
     public boolean addReport(Report report) {
@@ -64,7 +68,17 @@ public class reportServiceImpl implements ReportService {
         }
     }
 
-
+    @Override
+    public List<Report> getAllReport() {
+        List<Report> list = reportRepository.findAll();
+        if(list != null)
+        {
+            return list;
+        }else
+        {
+            return null;
+        }
+    }
 
 
 }

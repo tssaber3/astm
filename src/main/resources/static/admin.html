@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>管理员界面</title>
     <script src="js/jquery.js"></script>
+    <script src="js/admin.js"></script>
     <link rel="stylesheet" type="text/css" href="css/all.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
 </head>
@@ -16,8 +17,50 @@
     <div class="admin-page">
         <div class="search_stu">
             <div class="search-box">
-                <input type="text" class="search-input" placeholder="输入学号或名字">
-                <div class="search-btn"></div>
+                <input type="text" class="search-input" id="stu_input" placeholder="输入用户名">
+                <div class="search-btn" id="stu_search"></div>
+            </div>
+        </div>
+        <div class="stu-list">
+            <div class="stu-list-title">
+                <div class="title-item">
+                    身份
+                </div>
+                <div class="title-item">
+                    用户名
+                </div>
+                <div class="title-item">
+                    姓名
+                </div>
+
+                <div class="title-item">
+                    专业
+                </div>
+                <div class="title-item">
+                    年级
+                </div>
+                <div class="title-item">
+                    学分
+                </div>
+
+            </div>
+        </div>
+        <div class="stu-info-list">
+<!--            <div class="stu-info">-->
+<!--                <div class="stu-info-project_name">学生</div>-->
+<!--                <div class="stu-info-user_nickname">17347898501</div>-->
+<!--                <div class="stu-info-user_name">加藤惠</div>-->
+<!--                <div class="stu-info-project_type">计算机</div>-->
+<!--                <div class="stu-info-project_credit">2017级</div>-->
+<!--                <div class="stu-info-project_proof">3</div>-->
+<!--            </div>-->
+
+        </div>
+        <div class="under-line"></div>
+        <div class="search_stu">
+            <div class="search-box">
+                <input type="text" class="search-input" id="report-input"  placeholder="输入项目编号">
+                <div class="search-btn" id="report-search"></div>
             </div>
         </div>
         <div class="report-list">
@@ -44,14 +87,14 @@
             </div>
         </div>
         <div class="project-list">
-            <div class="project-info">
-                <div class="project-info-project_name">我的涛涛</div>
-                <div class="project-info-user_nickname">加藤惠</div>
-                <div class="project-info-user_name">17347898501</div>
-                <div class="project-info-project_type">社团活动</div>
-                <div class="project-info-project_credit">2</div>
-                <div class="project-info-project_proof">待审核</div>
-            </div>
+<!--            <div class="project-info">-->
+<!--                <div class="project-info-project_name">我的涛涛</div>-->
+<!--                <div class="project-info-user_nickname">加藤惠</div>-->
+<!--                <div class="project-info-user_name">17347898501</div>-->
+<!--                <div class="project-info-project_type">社团活动</div>-->
+<!--                <div class="project-info-project_credit">2</div>-->
+<!--                <div class="project-info-project_proof">待审核</div>-->
+<!--            </div>-->
         </div>
     </div>
 </div>

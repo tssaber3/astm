@@ -30,9 +30,14 @@ public class User {
     @Column(name = "score")
     private int score;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ROLE")
+
+    @ManyToOne(cascade = {CascadeType.REFRESH} )
+    @JoinColumn(name = "role_id")
     private Role role;
+
+    //管理项目类型 14种
+    @Column(name = "type")
+    private  String type;
 
     @Override
     public String toString() {
@@ -44,8 +49,17 @@ public class User {
                 ", deparment='" + deparment + '\'' +
                 ", grade=" + grade +
                 ", score=" + score +
-                ", role=" + role +
+                ", type='" + type + '\'' +
                 '}';
+    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getNickname() {

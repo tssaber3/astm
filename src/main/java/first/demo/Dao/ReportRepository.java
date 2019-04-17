@@ -11,4 +11,5 @@ public interface ReportRepository extends JpaRepository<Report,Integer> , JpaSpe
     List<Report> getReportsByProof(String Proof);
 
     Report getReportsById(int id);
+
 }

@@ -16,4 +16,8 @@ public interface ReportService {
 
     boolean saveReport(Report report);
 
+    List<Report> getAllReport();
+
+
+
 }

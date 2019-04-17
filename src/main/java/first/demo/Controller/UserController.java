@@ -41,6 +41,10 @@ public class UserController {
     @Resource
     private ReportRepository reportRepository;
 
+    @Resource
+    private UserRepository userRepository;
+
+
 //    返回值是0：账密错误 1：管理员 2：老师 3：学生
     @RequestMapping("/login")
     public void login(HttpServletResponse response, HttpServletRequest request, @RequestParam("username")String username,@RequestParam("password")String password) throws IOException {
@@ -121,7 +125,7 @@ public class UserController {
         report.setProject(project);
 
         boolean bok = reportService.addReport(report);
-        out.print(bok);
+        out.print("SUCCESS");
         out.flush();
     }
 
@@ -217,7 +221,6 @@ public class UserController {
                                @RequestParam("user_name")String user_name,
                                @RequestParam("project_type")String project_type,
                                @RequestParam("project_credit")String project_credit) throws IOException {
-        System.out.println("进来了");
         response.setContentType("text/xml;charset=UTF-8");
         response.setHeader("Cache-Control", "no-cache");
         response.setCharacterEncoding("UTF-8");
@@ -250,5 +253,185 @@ public class UserController {
                 return;
             }
         }
+
+
+    }
+
+
+    //得到除管理员外的所有用户
+    @RequestMapping("/getAllUser")
+    public void getAllUser(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        Map<String,Object> map = new HashMap<>();
+        List<User> list = userService.getAllStu();
+        if(list != null)
+        {
+            map.put("user",list);
+            String str = gson.toJson(map);
+            out.print(str);
+        }else
+        {
+            out.print("");
+        }
+        out.flush();
+    }
+
+    //得到全部的报告
+    @RequestMapping("/getAllReport")
+    public void getAllReport(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        Map<String,Object> map = new HashMap<>();
+        List<Report> list = reportService.getAllReport();
+        for (Report report:list)
+        {
+            map.put("report",list);
+            String str = gson.toJson(map);
+            out.print(str);
+        }
+        if(list != null)
+        {
+            out.print("");
+        }
+        out.flush();
+    }
+
+    @RequestMapping("/finduserbyid")
+    public void finduserbyid(HttpServletResponse response,HttpServletRequest request,@RequestParam("id")String id) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        User user = userService.getUserById(Integer.parseInt(id));
+        if(user != null)
+        {
+            String str = gson.toJson(user);
+            out.print(str);
+        }else
+        {
+            out.print("");
+        }
+        out.flush();
+    }
+
+    @RequestMapping("/saveuser")
+    public void saveuser(HttpServletRequest request,HttpServletResponse response,
+                         @RequestParam("username")String username,
+                         @RequestParam("nickname")String nickanme,
+                         @RequestParam("deparment")String deparment,
+                         @RequestParam("score")String score,
+                         @RequestParam("grade")String grade,
+                         @RequestParam("id")String id) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        User user = userService.getUserById(Integer.parseInt(id));
+        user.setUsername(username);
+        user.setNickname(nickanme);
+        user.setDeparment(deparment);
+        user.setScore(Integer.parseInt(score));
+        user.setGrade(Integer.parseInt(grade));
+        user.setId(Integer.parseInt(id));
+
+        userRepository.save(user);
+        out.print("success");
+        out.flush();
+    }
+    @RequestMapping("/saveteacher")
+    public void saveteacher(HttpServletResponse response,HttpServletRequest request,
+                            @RequestParam("username")String username,
+                            @RequestParam("nickname")String nickname,
+                            @RequestParam("id")String id) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        User user = userService.getUserById(Integer.parseInt(id));
+        user.setUsername(username);
+        userRepository.save(user);
+        out.print("success");
+        out.flush();
+    }
+
+    @RequestMapping("/savereport")
+    public void savereport(HttpServletResponse response,HttpServletRequest request,
+                            @RequestParam("username")String username,
+                            @RequestParam("nickname")String nickname,
+                            @RequestParam("id")String id,
+                           @RequestParam("project_name")String project_name,
+                           @RequestParam("credit")String credit,
+                           @RequestParam("type")String type,
+                           @RequestParam("description")String description) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Report report = reportService.getReportById(Integer.parseInt(id));
+        if(report != null)
+        {
+            report.setStu_username(username);
+            report.setStu_nickname(nickname);
+            report.getProject().setProject_name(project_name);
+            report.setCredit(Integer.parseInt(credit));
+            report.getProject().setType(type);
+            report.getProject().setDescription(description);
+            reportRepository.save(report);
+            out.print("success");
+        }else
+        {
+            out.print("");
+        }
+        out.flush();
+    }
+
+    @RequestMapping("/findUserlike")
+    public void findUserlike(HttpServletRequest request,HttpServletResponse response,@RequestParam("username")String usenrame) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Map<String,Object> map = new HashMap<>();
+        Gson gson = new Gson();
+        List<User> list = userRepository.findByUsernameLike(usenrame+"%");
+        if(list != null)
+        {
+            map.put("user",list);
+            String str = gson.toJson(map);
+            System.out.println(str);
+            out.print(str);
+        }else
+        {
+            out.print("");
+        }
+        out.flush();
+    }
+
+    @RequestMapping("/findreportbyid")
+    public void findreportbyid(HttpServletResponse response,HttpServletRequest request,@RequestParam("id")String id) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Report report = reportService.getReportById(Integer.parseInt(id));
+        Gson gson = new Gson();
+        if(report != null)
+        {
+            String str = gson.toJson(report);
+            out.print(str);
+        }
+        else
+        {
+            out.print("");
+        }
+        out.flush();
     }
 }

@@ -12,12 +12,33 @@
 .search-btn{width: 25px;height: 25px;line-height: 32px;cursor: pointer;background-color: red;position: absolute;background: url("../images/search.png")no-repeat;background-color: #fff;right: 3px;top: 3px}
 .search-btn:hover{background: url("../images/search-1.png")no-repeat;}
 
-.report-list{margin-top: 20px;}
+.under-line{width: 80%;margin: 0 auto;border-bottom: 1px solid #ddd;margin-top: 20px;margin-bottom: 40px;}
 
-.report-list-title{border-bottom: 1px solid #e7e7e7;text-align: center;background-color: #fff;width: 100%;margin: 0 auto;}
+.report-list,.stu-list{margin-top: 20px;}
+
+.report-list-title,.stu-list-title{border-bottom: 1px solid #e7e7e7;text-align: center;background-color: #fff;width: 100%;margin: 0 auto;}
 
 .title-item{width: 71px;text-align: center;min-width: 56px;margin: 0 35px;line-height: 48px;height: 48px;display: inline-block;font-size: 14px;}
 
-.project-info{margin-top: 10px;padding-left: 35px;cursor: pointer;}
+.project-list,.stu-info-list{max-height: 580px;overflow: hidden;}
+.stu-info-list:hover{overflow: auto;}
+.project-info,.stu-info{margin-top: 10px;padding-left: 45px;cursor: pointer;}
 .project-info:hover{background-color: #e7e7e7;}
 .project-info div{width: 71px;text-align: center;min-width: 56px;margin: 0 35px;line-height: 48px;height: 48px;display: inline-block;font-size: 14px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;vertical-align: bottom;}
+.stu-info div{width: 71px;text-align: center;min-width: 56px;margin: 0 35px;line-height: 48px;height: 48px;display: inline-block;font-size: 14px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;vertical-align: bottom;}
+.stu-info:hover{background-color: #e7e7e7;}
+
+/*定义滚动条*/
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #edf2f9;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #6d757a;
+}

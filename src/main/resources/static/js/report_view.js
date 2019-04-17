@@ -103,7 +103,7 @@ $(function () {
                 },
             }
         )
-    })
+    });
 
     //返回按钮
     $(".btn-back").click(function () {
