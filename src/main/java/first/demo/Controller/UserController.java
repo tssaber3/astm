@@ -407,7 +407,7 @@ public class UserController {
         PrintWriter out = response.getWriter();
         Map<String,Object> map = new HashMap<>();
         Gson gson = new Gson();
-        List<User> list = userRepository.findByUsernameLike(usenrame+"%");
+        List<User> list = userRepository.findByUsernameLike("%" + usenrame + "%");
         if(list != null)
         {
             map.put("user",list);
