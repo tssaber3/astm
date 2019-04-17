@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/report_view.css">
+    <title>添加老师</title>
+</head>
+<body>
+<div class="box">
+    <div class="title">
+        <span class="title-icon"></span>
+        <span>老师信息</span>
+    </div>
+    <div class="user-info">
+        <div class="stu_info">
+            <form class="info-form clear-fix" action="user/addStudent" method="post">
+                <div class="info-user-nickname info-user">
+                    <label class="info-item">姓名:</label>
+                    <div class="form-item-content">
+                        <div class="info-item-content-name info-report-detail">
+                            <input type="text" class="content-name-textarea" id="nickname" name="nickname"placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="info-user-username info-user">
+                    <label class="info-item">用户名:</label>
+                    <div class="form-item-content">
+                        <div class="info-item-content-name info-report-detail">
+                            <input type="text" class="content-name-textarea" id="username" name="username" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="info-user-deparment info-user">
+                    <label class="info-item">项目类型（如学科竞赛）:</label>
+                    <div class="form-item-content">
+                        <div class="info-item-content-name info-report-detail">
+                            <input type="text" class="content-name-textarea" id="type" name="type" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="info-user-score info-user">
+                    <label class="info-item">密码:</label>
+                    <div class="form-item-content">
+                        <div class="info-item-content-name info-report-detail">
+                            <input type="text" class="content-name-textarea" id="password" name="password" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="info-user-grade info-user">
+                    <label class="info-item">年级:</label>
+                    <div class="form-item-content">
+                        <div class="info-item-content-name info-report-detail">
+                            <input type="text" class="content-name-textarea" id="grade" name="grade" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                   onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-warp">
+                    <button type="submit" class="btn-save btn">保存</button>
+                    <a href="#" class="btn-back btn">返回</a>
+                </div>
+            </form>
+        </div>
+        <!-- 下划线-->
+
+    </div>
+</div>
+</body>
+</html>

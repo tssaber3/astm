@@ -23,7 +23,7 @@
 .under-line{width: 80%;margin: 0 auto;border-bottom: 1px solid #ddd;margin-top: 20px;margin-bottom: 40px;}
 
 /*按钮*/
-.btn-warp{width: 130px;height: 36px;margin: 0 0 0 100px;}
+.btn-warp{width: 270px;height: 36px;margin: 0 0 0 100px;}
 .btn{display: inline-block;line-height: 1;cursor: pointer;border: 1px solid #c4c4c4;margin: 0;padding: 10px 15px;border-radius: 4px;box-sizing: border-box;width: 110px;font-size: 14px;margin-right: 20px;color: #222;}
 .btn:hover{background-color: #00a7de;border-color: #00a7de;color: #fff;}
 

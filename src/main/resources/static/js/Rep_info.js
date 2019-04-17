@@ -92,7 +92,16 @@ $(function () {
             bok = false;
         }else
         {
-            $(".credit_error").css("display","none");
+            var reg = /^[0-9]*$/;
+            if(reg.test($("#content-credit").val()))
+            {
+                $(".credit_error").css("display","none");
+
+            }else
+            {
+                $(".credit_error").css("display","inline-block");
+                bok = false;
+            }
         }
         if($("#info-item-content-deparment").text() == '点击选择' ||$(".info-item-content-deparment").text() == '')
         {
@@ -113,7 +122,6 @@ $(function () {
 
         if(bok)
         {
-            alert(id);
             var username = $("#content-username").val();
             var nickname = $("#content-nickname").val();
             var project_name = $("#content-pro-name").val();

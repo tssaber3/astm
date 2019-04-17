@@ -137,4 +137,23 @@ $(function () {
             }
         }
     });
+    $(".btn-del").click(function () {
+       $.ajax(
+           {
+               url:'http://localhost:8090/user/userdel',
+               type: 'POST',
+               async: false,
+               dataType: 'text',
+               data:
+                   {
+                       id:id
+                   },
+               success:function (data) {
+                   alert("删除成功");
+                   window.location.href = 'admin.html';
+               }
+
+           }
+       )
+    });
 });

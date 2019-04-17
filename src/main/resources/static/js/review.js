@@ -1,6 +1,8 @@
 $(function () {
     //先查看是否有user 再将其发送给后台校验 查看他的权限 再展示不同的页面
     var username = localStorage.getItem("username");
+    //老师可以查看的类型
+    var type;
     $.ajax(
         {
             url:'http://localhost:8090/user/iflogin',
@@ -20,12 +22,13 @@ $(function () {
                     if (name == '老师')
                     {
                         $(".item-tea_nickname").html(data.username);
+                        type = data.type;
                     }else
                     {
                         window.location.href = 'login.html';
                     }
                 }
-            },
+            }
         }
     );
     
@@ -33,8 +36,11 @@ $(function () {
     $.ajax(
         {
             url:'http://localhost:8090/user/getList',
-            type:'get',
+            type:'post',
             dataType:'JSON',
+            data:{
+                type:type
+            },
             async: false,
             success:function (data) {
                 for (var i = 0;i < data.report.length;i++)

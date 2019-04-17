@@ -46,7 +46,7 @@ $(function () {
                                             '                <div id="stu-info-id" style="display: none">'+ list[i].id +'</div>\n' +
                                             '            </div>')
                                     }
-                                },
+                                }
                             }
                         );
                         $.ajax(
@@ -71,7 +71,7 @@ $(function () {
                                     }
                                 },
                                 error:function (data) {
-                                    alert("s");
+
                                 }
                             }
                         )
@@ -153,7 +153,7 @@ $(function () {
                             '                <div class="project-info-project_proof">'+ data.proof +'</div>\n' +
                             '                <div style="display: none" id="project-info-project_id">'+ data +'</div>\n' +
                             '            </div>')
-                    },
+                    }
 
                 }
             )

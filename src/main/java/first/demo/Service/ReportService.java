@@ -18,6 +18,8 @@ public interface ReportService {
 
     List<Report> getAllReport();
 
+    List<Report> getReportByType(String type);
+
 
 
 }

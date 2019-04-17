@@ -12,4 +12,5 @@ public interface ReportRepository extends JpaRepository<Report,Integer> , JpaSpe
 
     Report getReportsById(int id);
 
+
 }

@@ -7,6 +7,11 @@
     <script src="js/admin.js"></script>
     <link rel="stylesheet" type="text/css" href="css/all.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <style type="text/css">
+        .btn-user{position: absolute;right: -675px;bottom: 0}
+        .btn:hover{background-color: #00a7de;border-color: #00a7de;color: #fff;}
+        .btn{display: inline-block;line-height: 1;cursor: pointer;border: 1px solid #c4c4c4;margin: 0;padding: 10px 15px;border-radius: 4px;box-sizing: border-box;width: 110px;font-size: 14px;margin-right: 20px;color: #222;}
+    </style>
 </head>
 <body>
 <div class="box">
@@ -19,6 +24,11 @@
             <div class="search-box">
                 <input type="text" class="search-input" id="stu_input" placeholder="输入用户名">
                 <div class="search-btn" id="stu_search"></div>
+            </div>
+            <div class="btn-user">
+                <a class="btn" href="login.html">返回</a>
+                <a class="btn" href="addstudent.html">添加学生</a>
+                <a class="btn" href="addteacher.html">添加老师</a>
             </div>
         </div>
         <div class="stu-list">

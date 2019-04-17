@@ -2,9 +2,11 @@ package first.demo.Controller;
 
 import com.google.gson.Gson;
 import first.demo.Dao.ReportRepository;
+import first.demo.Dao.RoleRepository;
 import first.demo.Dao.UserRepository;
 import first.demo.Pojo.Project;
 import first.demo.Pojo.Report;
+import first.demo.Pojo.Role;
 import first.demo.Pojo.User;
 import first.demo.Service.ReportService;
 import first.demo.Service.UserService;
@@ -43,6 +45,9 @@ public class UserController {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private RoleRepository roleRepository;
 
 
 //    返回值是0：账密错误 1：管理员 2：老师 3：学生
@@ -131,13 +136,14 @@ public class UserController {
 
 //    获得审核列表
     @RequestMapping("/getList")
-    public void getList(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public void getList(HttpServletRequest request,HttpServletResponse response,
+                        @RequestParam("type")String type) throws IOException {
         response.setContentType("text/xml;charset=UTF-8");
         response.setHeader("Cache-Control", "no-cache");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         Gson gson = new Gson();
-        List<Report> list = reportService.getReport();
+        List<Report> list = reportService.getReportByType(type);
         if(list != null)
         {
             Map<String,Object> map = new HashMap<>();
@@ -290,15 +296,15 @@ public class UserController {
         Gson gson = new Gson();
         Map<String,Object> map = new HashMap<>();
         List<Report> list = reportService.getAllReport();
-        for (Report report:list)
+        if(list != null)
         {
             map.put("report",list);
             String str = gson.toJson(map);
             out.print(str);
-        }
-        if(list != null)
+        }else
         {
             out.print("");
+
         }
         out.flush();
     }
@@ -433,5 +439,83 @@ public class UserController {
             out.print("");
         }
         out.flush();
+    }
+
+    @RequestMapping("/changepassword")
+    public void changepassword(HttpServletRequest request,HttpServletResponse response,
+                               @RequestParam("username")String username,
+                               @RequestParam("password")String password) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        User user = userRepository.findByUsername(username);
+        System.out.println("ssss");
+        if(user != null)
+        {
+            user.setPassword(password);
+            userRepository.save(user);
+            out.print("success");
+        }else
+        {
+            out.print("");
+        }
+        out.flush();
+    }
+
+    @RequestMapping("/userdel")
+    public void userdel(HttpServletResponse response,HttpServletRequest request,
+                        @RequestParam("id")String id) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        User user = userService.getUserById(Integer.parseInt(id));
+        userRepository.delete(user);
+        out.print("success");
+        out.flush();
+    }
+
+    @RequestMapping("/addStudent")
+    public void addStudent(HttpServletResponse response,HttpServletRequest request,String nickname,String username,String deparment,String grade,String password) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        User user = new User();
+        user.setUsername(username);
+        user.setNickname(nickname);
+        user.setPassword(password);
+        user.setDeparment(deparment);
+        Role role = new Role();
+        role.setName("学生");
+        user.setRole(role);
+        user.setScore(0);
+        user.setGrade(Integer.parseInt(grade));
+        role.getUsers().add(user);
+        role.setId(3);
+        roleRepository.save(role);
+        userRepository.save(user);
+    }
+    @RequestMapping("/addTeacher")
+    public void addTeacher(HttpServletResponse response,HttpServletRequest request,String nickname,String username,String type,String grade,String password) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        User user = new User();
+        user.setUsername(username);
+        user.setNickname(nickname);
+        user.setPassword(password);
+        user.setType(type);
+        Role role = new Role();
+        role.setName("老师");
+        role.setId(2);
+        role.getUsers().add(user);
+        user.setRole(role);
+        user.setScore(0);
+        user.setGrade(Integer.parseInt(grade));
+        roleRepository.save(role);
+        userService.saveUser(user);
     }
 }

@@ -51,7 +51,15 @@ $(function () {
             bok = false;
         }else
         {
-            $(".credit_error").css("display","none");
+            var reg = /^[0-9]*$/;
+            if(reg.test($(".content-credit-textarea").val()))
+            {
+                $(".credit_error").css("display","none");
+            }else
+            {
+                $(".credit_error").css("display","inline-block");
+                bok = false;
+            }
         }
         if($(".info-item-content-deparment").text() == '点击选择' ||$(".info-item-content-deparment").text() == '')
         {

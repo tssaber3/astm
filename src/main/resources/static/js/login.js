@@ -23,7 +23,6 @@ $(function () {
                         window.location.href = 'admin.html';
                     }else if(data == 2)
                     {
-                        alert("sss");
                         localStorage.clear();
                         localStorage.setItem("username",username);
                         window.location.href = 'info.html';
@@ -35,11 +34,11 @@ $(function () {
                     }else if(data == 0)
                     {
                         //账密错误的提示
-                        alert(0);
+                        alert("账密错误");
                     }
                 },
                error:function (data) {
-                   alert("ss");
+
                }
            }
        )

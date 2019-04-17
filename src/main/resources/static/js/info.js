@@ -43,4 +43,8 @@ $(function()
         localStorage.clear();
         window.location.href = 'login.html';
     });
+
+    $(".btn-change").click(function () {
+        window.location.href = 'change.html';
+    });
 });
