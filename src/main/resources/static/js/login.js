@@ -42,5 +42,9 @@ $(function () {
                }
            }
        )
-   }) 
+   }) ;
+   $(".btn-reset").click(function () {
+      $("#username-input").val("");
+      $("#password-input").val("");
+   });
 });
