@@ -20,6 +20,8 @@ $(function()
                     var name = data.role.name;
                     if(name == '老师')
                     {
+                        $(".btn-warp").css("width",400);
+                        $(".btn-watch").css("display","none");
                         $(".tea-info").css("display","block");
                         $(".tea-info .info-item-nickname").text(data.nickname);
                         $(".tea-info .info-item-username").text(data.username);

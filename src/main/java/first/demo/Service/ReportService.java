@@ -20,6 +20,7 @@ public interface ReportService {
 
     List<Report> getReportByType(String type);
 
+    List<Report> getReportByname(String username);
 
 
 }

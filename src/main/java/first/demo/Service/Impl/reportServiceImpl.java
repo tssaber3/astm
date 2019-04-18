@@ -93,7 +93,27 @@ public class reportServiceImpl implements ReportService {
             public Predicate toPredicate(Root<Report> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> list = new ArrayList<>();
                 list.add(criteriaBuilder.equal(root.join("project").get("type"),type));
-                list.add(criteriaBuilder.equal(root.get("proof"),"待审核"));
+                Predicate[] arr = new Predicate[list.size()];
+                return criteriaBuilder.and(list.toArray(arr));
+            }
+        };
+        List<Report> list = reportRepository.findAll(specification);
+        if(list != null)
+        {
+            return list;
+        }else
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Report> getReportByname(String username) {
+        Specification<Report> specification = new Specification<Report>() {
+            @Override
+            public Predicate toPredicate(Root<Report> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> list = new ArrayList<>();
+                list.add(criteriaBuilder.equal(root.get("stu_username"),username));
                 Predicate[] arr = new Predicate[list.size()];
                 return criteriaBuilder.and(list.toArray(arr));
             }

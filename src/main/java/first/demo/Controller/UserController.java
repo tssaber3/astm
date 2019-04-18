@@ -518,4 +518,27 @@ public class UserController {
         roleRepository.save(role);
         userService.saveUser(user);
     }
+
+    @RequestMapping("/getreportbyname")
+    public void getreportbyname(HttpServletRequest request,HttpServletResponse response,
+                                @RequestParam("username")String username) throws IOException {
+        response.setContentType("text/xml;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        Map<String,Object> map = new HashMap<>();
+        List<Report> list = reportService.getReportByname(username);
+        if(list != null)
+        {
+            map.put("report",list);
+            String str = gson.toJson(map);
+            out.print(str);
+        }
+        else
+        {
+            out.print("");
+        }
+        out.flush();
+    }
 }
