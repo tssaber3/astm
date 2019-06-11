@@ -24,7 +24,7 @@ public interface UserMapper {
             "where id=#{id}")
     User selUserById(int id);
 
-    //删除学会
+    //删除学生
     @Delete("delete from user where id=#{id}")
     void delUserById(int id);
 
