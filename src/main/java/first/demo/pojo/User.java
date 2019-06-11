@@ -1,4 +1,4 @@
-package first.demo.Pojo;
+package first.demo.pojo;
 
 import javax.persistence.*;
 
@@ -30,14 +30,13 @@ public class User {
     @Column(name = "score")
     private int score;
 
+    //管理项目类型 14种
+    @Column(name = "type")
+    private  String type;
 
     @ManyToOne(cascade = {CascadeType.REFRESH} )
     @JoinColumn(name = "role_id")
     private Role role;
-
-    //管理项目类型 14种
-    @Column(name = "type")
-    private  String type;
 
     @Override
     public String toString() {

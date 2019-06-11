@@ -1,10 +1,10 @@
-package first.demo.Service.Impl;
+package first.demo.service.impl;
 
-import first.demo.Dao.ReportRepository;
-import first.demo.Mapper.ReportMapper;
-import first.demo.Pojo.Project;
-import first.demo.Pojo.Report;
-import first.demo.Service.ReportService;
+import first.demo.dao.ReportRepository;
+import first.demo.mapper.ReportMapper;
+import first.demo.pojo.Project;
+import first.demo.pojo.Report;
+import first.demo.service.ReportService;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +39,15 @@ public class reportServiceImpl implements ReportService {
 //    获取待审核的全部项目
     @Override
     public List<Report> getReport() {
-        List<Report> list = reportRepository.getReportsByProof("待审核");
+        List<Report> list = reportMapper.getReportByProof("待审核");
+
+//        List<Report> list = reportRepository.getReportsByProof("待审核");
         if(list != null)
         {
+            for (Report report:list){
+                Project project = reportMapper.selProjectByReportId(report.getId());
+                report.setProject(project);
+            }
             return list;
         }else
         {
@@ -52,9 +58,12 @@ public class reportServiceImpl implements ReportService {
 
     @Override
     public Report getReportById(int id) {
-        Report report = reportRepository.getReportsById(id);
+        Report report = reportMapper.getReportById(id);
+//        Report report = reportRepository.getReportsById(id);
         if(report != null)
         {
+            Project project = reportMapper.selProjectByReportId(id);
+            report.setProject(project);
             return report;
         }else
         {
@@ -76,9 +85,13 @@ public class reportServiceImpl implements ReportService {
 
     @Override
     public List<Report> getAllReport() {
-        List<Report> list = reportRepository.findAll();
+        List<Report> list = reportMapper.getAllReport();
         if(list != null)
         {
+            for (Report report:list){
+                Project project = reportMapper.selProjectByReportId(report.getId());
+                report.setProject(project);
+            }
             return list;
         }else
         {
@@ -126,6 +139,13 @@ public class reportServiceImpl implements ReportService {
         {
             return null;
         }
+    }
+
+    @Override
+    public void updReport(Report report) {
+        Project project = report.getProject();
+        reportMapper.updReport(report.getCredit(),report.getStu_nickname(),report.getStu_username(),report.getId());
+        reportMapper.updProject(project.getDescription(),project.getProject_name(),project.getType(),project.getId());
     }
 
 

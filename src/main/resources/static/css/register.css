@@ -1,0 +1,60 @@
+.top-banner{width: 100%;height: 106px;}
+.top-img{width: 980px;height: 106px;margin: 0 auto;}
+.title-line{width: 980px;height: 28px;margin: 0 auto;border-bottom: 1px solid #ddd;margin-bottom: 28px;text-align: center;}
+.title-line span{font-size: 38px;height: 56px;line-height: 56px;margin: 0 auto;padding: 0 20px;background-color: #fff;text-align: center;}
+
+/*注册页面的主要内容*/
+.register-container{width: 980px;margin: 0 auto;padding: 60px 0;}
+/*填写栏主要形式*/
+.form-group{width: 420px;margin: 0 auto;font-size: 12px;position: relative;}
+
+/*用户名填写栏*/
+.el-input{position: relative;width: 100%;font-size: 14px;display: inline-block;}
+.el-input__inner{border-radius: 4px;border: 1px solid #dcdfe6;display: inline-block;height: 40px;line-height: 40px;padding: 0 15px;width: 100%;background-color: #fff;box-sizing: border-box;color: #606266}
+
+/*验证码*/
+/*.el-input-group{line-height: normal;display: inline-table;width: 100%;}*/
+/*.el-input-group__prepend{background-color: #fff;}*/
+/*.el-input-group .el-input-group__prepend{color: #909399;display: table-cell;position: relative;border-left: 1px solid #dcdfe6;border-radius: 4px;padding: 0 20px;width: 1px;border-bottom-right-radius: 0;border-top-right-radius: 0;}*/
+/*.el-select{display: inline-block;margin: -10px -20px;position: relative;}*/
+/*.el-select .el-input{width: 130px;}*/
+/*.el-input--suffix input{height: 40px;line-height: 40px;padding: 0 15px;border-left: none;border-right: none;}*/
+/*.el-input__suffix{right: 5px;position: absolute;top: 0;height: 100%;text-align: center;}*/
+/*.el-input__suffix-inner{}*/
+.text-right{text-align: right;line-height: 40px;}
+.form-group.text-right a{font-size: 12px;color: #00a1d6;}
+
+/*错误提醒信息*/
+.error-message{color: #f45d90;position: absolute;right: -135px;top: 12px;font-size: 12px;display: inline-block;}
+
+/*安全提醒消息*/
+.register-hidden-gruop{width: 420px;height: 40px;margin: 0 auto;}
+.safe_window{width: 415px;border-radius: 3px;line-height: 20px;padding: 10px 0;margin: 0 auto;font-weight: 700;overflow: hidden;font-size: 15px;}
+.safe_window p{float: left;display: none;}
+.safe_window div{display: none;}
+.safe_line{width: 30px;height: 5px;border-radius: 5px;margin-left: 15px;margin-top: 7px;margin-right: 10px;float: left;}
+.safe_line.l01{background-color: red;}
+.safe_line.l02{background-color: #ff7f00;}
+.safe_line.l03{background-color: #f0f028;}
+.safe_line.l04{background-color: #00bbee;}
+.safe_line.l05{background-color: #49c519;}
+
+.el-button{display: inline-block;line-height: 1;cursor: pointer;border: 1px solid #dcdfe6;text-align: center;box-sizing: border-box;margin: 0;font-weight: 500;font-size: 14px;border-radius: 4px;}
+/*验证码的按钮*/
+.yzm-buttom{width: 130px;height: 36px;position: absolute;right: 2px;top: 2px;padding: 0 4px;text-overflow: ellipsis;color: #fff;background-color: #00bbee;border-color: #00bbee;}
+
+
+/*协议同意*/
+.register-agree{font-size: 12px;display: block;padding: 10px 0;cursor: pointer;}
+.check-box{vertical-align:middle;margin-bottom: 3px;}
+.register-agree .check-box{width: 14px;height: 14px;display: inline-block;background-size: 14px 14px;background-position: 50%;cursor: pointer;}
+.register-agree a{color: #00bbee;}
+.btn-full{width: 100%;height: 40px;}
+/*不同意协议的样式*/
+.btn-disable{color: rgba(0,0,0,.25);background-color: #f5f5f5;border-color: #d9d9d9;}
+/*同意的样式*/
+.btn-agree{color: #fff;background-color: #00bbee;border-color: #00bbee;}
+
+
+.register-hidden-gruop{width: 420px;height: 40px;margin: 0 auto;font-size: 12px;}
+.register-hidden-gruop a{color: #00bbee}

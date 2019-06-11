@@ -1,7 +1,6 @@
-package first.demo.Service;
+package first.demo.service;
 
-import first.demo.Pojo.Project;
-import first.demo.Pojo.Report;
+import first.demo.pojo.Report;
 
 import javax.servlet.annotation.WebServlet;
 import java.util.List;
@@ -22,5 +21,6 @@ public interface ReportService {
 
     List<Report> getReportByname(String username);
 
+    void updReport(Report report);
 
 }

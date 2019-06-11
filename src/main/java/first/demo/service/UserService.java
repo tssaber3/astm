@@ -1,6 +1,6 @@
-package first.demo.Service;
+package first.demo.service;
 
-import first.demo.Pojo.User;
+import first.demo.pojo.User;
 
 import javax.servlet.annotation.WebServlet;
 import java.util.List;
@@ -17,4 +17,13 @@ public interface UserService {
     List<User> getAllStu();
 
     User getUserById(int id);
+
+    //通过学生id删除学生
+    void delUserById(int id);
+
+    //更新用户信息
+    void updUser(User user);
+
+    //更新用户密码
+    void updUserPassword(String password);
 }

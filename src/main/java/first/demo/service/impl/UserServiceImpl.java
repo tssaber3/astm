@@ -1,8 +1,10 @@
-package first.demo.Service.Impl;
+package first.demo.service.impl;
 
-import first.demo.Dao.UserRepository;
-import first.demo.Pojo.User;
-import first.demo.Service.UserService;
+import first.demo.dao.UserRepository;
+import first.demo.mapper.UserMapper;
+import first.demo.pojo.Role;
+import first.demo.pojo.User;
+import first.demo.service.UserService;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private UserMapper userMapper;
+
     @Override
     public User selUserByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -25,7 +31,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selUserByUsernameAndPassword(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username,password);
+        User user = userMapper.selUserByUsernameAndPassword(username,password);
+        if(user != null){
+            Role role = userMapper.selRoleByUserId(user.getId());
+            user.setRole(role);
+            return user;
+        }else {
+            return null;
+        }
+//        return userRepository.findByUsernameAndPassword(username,password);
     }
 
     @Override
@@ -66,13 +80,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(int id) {
-        User user = userRepository.findById(id).get();
-        if(user != null)
+        User user = userMapper.selUserById(id);
+        Role role = userMapper.selRoleByUserId(id);
+//        User user = userRepository.findById(id).get();
+        //检查查询的值是否为空
+        if(user != null && role != null)
         {
+            user.setRole(role);
             return user;
         }else
         {
             return null;
         }
+    }
+
+    @Override
+    public void delUserById(int id) {
+        userMapper.delUserById(id);
+    }
+
+    @Override
+    public void updUser(User user) {
+        userMapper.updUser(user.getUsername(),user.getNickname(),user.getDeparment(),user.getScore(),user.getGrade(),user.getId());
+    }
+
+    @Override
+    public void updUserPassword(String password) {
+        userMapper.updUserPassword(password);
     }
 }

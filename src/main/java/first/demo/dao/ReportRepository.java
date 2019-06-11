@@ -1,7 +1,6 @@
-package first.demo.Dao;
+package first.demo.dao;
 
-import first.demo.Pojo.Project;
-import first.demo.Pojo.Report;
+import first.demo.pojo.Report;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

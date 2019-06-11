@@ -1,4 +1,4 @@
-package first.demo.Pojo;
+package first.demo.pojo;
 
 import javax.persistence.*;
 

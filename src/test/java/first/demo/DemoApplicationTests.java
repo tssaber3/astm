@@ -1,18 +1,22 @@
 package first.demo;
 
-import first.demo.Dao.RoleRepository;
-import first.demo.Dao.UserRepository;
-import first.demo.Pojo.Project;
-import first.demo.Pojo.Report;
-import first.demo.Pojo.Role;
-import first.demo.Pojo.User;
-import first.demo.Service.ReportService;
+import first.demo.dao.RoleRepository;
+import first.demo.dao.UserRepository;
+import first.demo.mapper.ReportMapper;
+import first.demo.mapper.UserMapper;
+import first.demo.pojo.Project;
+import first.demo.pojo.Report;
+import first.demo.pojo.Role;
+import first.demo.pojo.User;
+import first.demo.service.ReportService;
+import first.demo.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -215,6 +219,38 @@ public class DemoApplicationTests {
         report.setProject(project);
 
         reportService.addReport(report);
+    }
+
+    @Test
+    public void  ssss()
+    {
+        System.out.println(":ssss");
+    }
+
+    @Resource
+    private ReportMapper reportMapper;
+
+    @Resource
+    private UserMapper userMapper;
+
+    @Resource
+    private UserService userService;
+
+    @Test
+    public void text3()
+    {
+        List<Report> list = reportService.getAllReport();
+        for (Report report:list){
+            System.out.println(report);
+        }
+    }
+
+    @Test
+    public void text4(){
+
+        User user = userRepository.findById(16).get();
+        Role role = user.getRole();
+        System.out.println(role.getUsers());
     }
 
 }

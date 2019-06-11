@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <script src="js/register.js"></script>
+</head>
+<body>
+<div>
+    <div class="top-banner">
+        <div class="top-img"></div>
+    </div>
+    <div class="title-line">
+        <span>注册</span>
+    </div>
+    <div class="register-container">
+        <!--加上onsubmit="return false"就提交不了-->
+        <form class="" method="post" onsubmit="return false">
+            <!--名字-->
+            <div class="form-group">
+                <div class="el-input">
+                    <input class="el-input__inner" id="nickname-register" placeholder="请填写你的姓名">
+                </div>
+                <p class="error-message error-message-1"></p>
+            </div>
+            <!--安全提醒消息-->
+            <div class="register-hidden-gruop"></div>
+
+            <!--学号-->
+            <div class="form-group">
+                <div class="el-input">
+                    <input class="el-input__inner" id="username-register" placeholder="请填写你的学号">
+                </div>
+                <p class="error-message error-message-2"  style="right: -140px;"></p>
+            </div>
+            <div class="register-hidden-gruop"></div>
+            <!--密码填写栏-->
+            <div class="form-group">
+                <div class="el-input">
+                    <input class="el-input__inner" id="password-register" placeholder="请填写你的密码">
+                </div>
+                <p class="error-message error-message-2"  style="right: -140px;"></p>
+            </div>
+
+            <div class="register-hidden-gruop">
+            </div>
+            <div class="form-group">
+                <div class="el-input">
+                    <input class="el-input__inner" id="deparment-register" placeholder="请填写你的专业">
+                </div>
+                <p class="error-message error-message-3"></p>
+            </div>
+            <div class="form-group text-right">
+                <div style="height: 40px;"></div>
+            </div>
+            <!--验证码输入-->
+            <div class="form-group yzm">
+                <div class="code-input el-input">
+                    <input type="text" class="el-input__inner" id="grade-register" placeholder="请填写你的年级">
+                </div>
+            </div>
+            <!--协议-->
+            <div class="form-group">
+                <div style="height: 40px;"></div>
+            </div>
+            <div class="form-group">
+                <button type="button" id="register-btn" class="el-button btn-full btn-disable">
+                    <span>注册</span>
+                </button>
+            </div>
+            <div class="register-hidden-gruop text-right">
+                <a href="#">已有账号，直接登录></a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

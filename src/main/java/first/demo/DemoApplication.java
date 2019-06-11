@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @ServletComponentScan//在springboot启动时会扫描WebServlet  并将其实例化
-@MapperScan("first.demo.Mapper")//扫描mapper包
+@MapperScan("first.demo.mapper")//扫描mapper包
 public class DemoApplication {
 
     public static void main(String[] args) {

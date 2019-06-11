@@ -1,15 +1,16 @@
-package first.demo.Controller;
+package first.demo.controller;
 
 import com.google.gson.Gson;
-import first.demo.Dao.ReportRepository;
-import first.demo.Dao.RoleRepository;
-import first.demo.Dao.UserRepository;
-import first.demo.Pojo.Project;
-import first.demo.Pojo.Report;
-import first.demo.Pojo.Role;
-import first.demo.Pojo.User;
-import first.demo.Service.ReportService;
-import first.demo.Service.UserService;
+import first.demo.dao.ReportRepository;
+import first.demo.dao.RoleRepository;
+import first.demo.dao.UserRepository;
+import first.demo.enums.Singleton;
+import first.demo.pojo.Project;
+import first.demo.pojo.Report;
+import first.demo.pojo.Role;
+import first.demo.pojo.User;
+import first.demo.service.ReportService;
+import first.demo.service.UserService;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,6 +49,7 @@ public class UserController {
 
     @Resource
     private RoleRepository roleRepository;
+
 
 
 //    返回值是0：账密错误 1：管理员 2：老师 3：学生
@@ -328,6 +330,7 @@ public class UserController {
         out.flush();
     }
 
+    //测试
     @RequestMapping("/saveuser")
     public void saveuser(HttpServletRequest request,HttpServletResponse response,
                          @RequestParam("username")String username,
@@ -347,8 +350,8 @@ public class UserController {
         user.setScore(Integer.parseInt(score));
         user.setGrade(Integer.parseInt(grade));
         user.setId(Integer.parseInt(id));
-
-        userRepository.save(user);
+        userService.updUser(user);
+//        userRepository.save(user);
         out.print("success");
         out.flush();
     }
@@ -368,6 +371,7 @@ public class UserController {
         out.flush();
     }
 
+    //测试
     @RequestMapping("/savereport")
     public void savereport(HttpServletResponse response,HttpServletRequest request,
                             @RequestParam("username")String username,
@@ -390,7 +394,8 @@ public class UserController {
             report.setCredit(Integer.parseInt(credit));
             report.getProject().setType(type);
             report.getProject().setDescription(description);
-            reportRepository.save(report);
+//            reportRepository.save(report);
+            reportService.updReport(report);
             out.print("success");
         }else
         {
@@ -441,6 +446,7 @@ public class UserController {
         out.flush();
     }
 
+    //测试
     @RequestMapping("/changepassword")
     public void changepassword(HttpServletRequest request,HttpServletResponse response,
                                @RequestParam("username")String username,
@@ -449,12 +455,14 @@ public class UserController {
         response.setHeader("Cache-Control", "no-cache");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        User user = userRepository.findByUsername(username);
+//        User user = userRepository.findByUsername(username);
+        User user = userService.selUserByUsername(username);
         System.out.println("ssss");
         if(user != null)
         {
             user.setPassword(password);
-            userRepository.save(user);
+            userService.updUserPassword(password);
+//            userRepository.save(user);
             out.print("success");
         }else
         {

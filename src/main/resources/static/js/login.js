@@ -44,7 +44,6 @@ $(function () {
        )
    }) ;
    $(".btn-reset").click(function () {
-      $("#username-input").val("");
-      $("#password-input").val("");
-   });
+       window.location.href = 'register.html';
+   })
 });
